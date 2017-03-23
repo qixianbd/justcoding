@@ -1,5 +1,6 @@
 package keyming.learning.justcoding.classref;
 
+import lombok.extern.log4j.Log4j;
 
 class Sub3 extends Super {
 	private static Sub3 instance = new Sub3();
@@ -24,10 +25,12 @@ class Sub3 extends Super {
 	}
 }
 
+@Log4j
 public class TestClassLoader4 {
 
 	public static void main(String[] args) {
 		Sub3 s = Sub3.getInstance();
+		log.error(s.toString());
 	}
 
 }

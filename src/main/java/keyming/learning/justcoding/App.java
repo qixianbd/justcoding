@@ -5,7 +5,6 @@ import keyming.learning.justcoding.ruleengine.CmpType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -51,7 +50,6 @@ class Tree extends Plants {
 	public Tree() {
 		this("appleTree");
 	}
-	
 }
 
 enum WorkDay {

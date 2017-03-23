@@ -5,9 +5,7 @@ import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.extern.log4j.Log4j;
 
-@Log4j
 public class HashBag<K, V> {
 	@Data
 	@AllArgsConstructor
