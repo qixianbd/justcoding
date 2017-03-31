@@ -1,10 +1,10 @@
 package keyming.learning.justcoding.simpleclass;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import junit.framework.Assert;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -34,6 +34,9 @@ public class MonthTest {
 		Assert.assertEquals(Month.Feb.toString(), Month.getFullName(2));
 		
 		Assert.assertEquals(Month.March.getShortName(), Month.getShortName(3));
+		
+		Assert.assertEquals("Janary", Month.Jan.getFullName());
+		Assert.assertEquals(Month.Jan.getFullName(), Month.getFullName("Jan"));
 	}
 	
 	@Test
