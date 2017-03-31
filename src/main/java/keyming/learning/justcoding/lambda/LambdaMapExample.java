@@ -2,12 +2,15 @@ package keyming.learning.justcoding.lambda;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Map;
 
 import com.google.common.collect.Lists;
 
 import keyming.learning.justcoding.entity.Person;
 import keyming.learning.justcoding.entity.Person.Sex;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 public class LambdaMapExample {
 
 	public static void main(String[] args) {
@@ -24,5 +27,10 @@ public class LambdaMapExample {
 				.map(p -> p.getName())
 				.collect(Collectors.toList());
 		System.out.println(names);
+		
+		// group by sex, like sql group by, and the result is <columeType, listofRecords>
+		Map<Sex, List<Person>> personMap = persons.stream().collect(Collectors.groupingBy(Person::getSex));
+		persons.forEach(p -> log.error(p));
+		
 	}
 }
