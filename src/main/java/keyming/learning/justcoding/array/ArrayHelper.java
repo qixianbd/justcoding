@@ -1,5 +1,13 @@
 package keyming.learning.justcoding.array;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
+import com.google.common.collect.Lists;
+
 public class ArrayHelper {
 	// public static int max(int... args) {
 	// int maxValue = Integer.MIN_VALUE;
@@ -49,6 +57,27 @@ public class ArrayHelper {
 		}
 		return true;
 	}
+	
+    public static Map<Object, Object> toMap(final Object[] array) {
+    	if (array == null) {
+    		return null;
+    	}
+    	Map<Object, Object> retMap = new HashMap<Object, Object>((int)(array.length * 1.2));
+    	for (Object o : array) {
+    		if (o instanceof Map.Entry<?, ?>) {
+    			Map.Entry<?, ?> entry = (Map.Entry<?, ?>)o;
+    			retMap.put(entry.getKey(), entry.getValue());
+    		} else if (o instanceof Object[]) {
+    			Object[] sub = (Object[]) o;
+    			if (sub.length >= 2) {
+    				Object key = sub[0];
+    				Object value = sub[1];
+    				retMap.put(key, value);
+    			}
+    		}
+    	}
+    	return retMap;
+    }
 
 	public static void main(String[] args) {
 		int value = max(1, 2, 3, 4, 8, 100, 6);
@@ -61,6 +90,19 @@ public class ArrayHelper {
 		System.out.println(increment);
 		increment = isIncrementSorted(1, 2, 3, 4, 5, -2);
 		System.out.println(increment);
+		
+		String[][] maps = {
+				{"1", "str1"},
+				{"2", "str2", "str3"}
+		};
+		Map<Object, Object> ret = ArrayHelper.toMap(maps);
+		System.out.println(ret.toString());
+		
+		Map.Entry<Integer, Double> entry1 = new ImmutablePair<Integer, Double>(Integer.valueOf(1), Double.valueOf(0.9f));
+		Map.Entry<Double, Double> entry2 = new ImmutablePair<Double, Double>(Double.valueOf(0.2f), Double.valueOf(0.3f));
+		ret.clear();
+		List<Map.Entry<?,?>> entries = Lists.newArrayList(entry1, entry2);
+		ret = ArrayHelper.toMap(entries.toArray(new Map.Entry<?, ?>[0]));
+		System.out.println(ret.toString());
 	}
-
 }
